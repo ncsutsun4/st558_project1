@@ -1,2 +1,2 @@
-# ST558Project1
+# ST558 Project 1
 Creating a vignette and a blog post
