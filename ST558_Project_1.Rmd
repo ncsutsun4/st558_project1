@@ -29,36 +29,3 @@ knitr::opts_chunk$set(
   There three major R packages available for reading JSON data into R (rjson, RJSONIO and jsonlite). Examples to compare behavior and performance of those three packages are [here](https://rstudio-pubs-static.s3.amazonaws.com/31702_9c22e3d1a0c44968a4a1f9656f1800ab.html). I prefer jsonlite because it provides more options for manipulating the format and most importantly we can get well formatted data by default.
   
 # Access NFL records 'Franchise' API and pulldown JSON data
-
-  
-=======
-  
-  
-  More information can be checked [here](https://en.wikipedia.org/wiki/JSON) and JSON syntax introduction is [here](http://json.org/)
-  
-  [JSON (JavaScript Object Notation)](https://en.wikipedia.org/wiki/JSON) is an open standard file format, originally specified by [Douglas Crockford](https://en.wikipedia.org/wiki/Douglas_Crockford). It is commonly used for exchanging data in web applications. JSON uses human-readable syntax and is a programming language-independent format. File in JSON format can be easily checked manually using text editors or processed to extract information with many different packages/tools, so JSON is also a very good choice for storing data.
-  
-# Ways to read JSON data into R
-
-  
-
->>>>>>> ed2ee0165196510d6eee371615bc7b8eb6ce2abb
-
-
-
-
-<<<<<<< HEAD
-
-=======
->>>>>>> ed2ee0165196510d6eee371615bc7b8eb6ce2abb
-
-You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
-
-```{r, echo=FALSE, results='asis'}
-knitr::kable(head(mtcars, 10))
-```
-
-Also a quote using `>`:
-
-> "He who gives up [code] safety for [code] speed deserves neither."
-([via](https://twitter.com/hadleywickham/status/504368538874703872))
