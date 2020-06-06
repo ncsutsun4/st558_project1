@@ -10,6 +10,10 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+require(httr)
+require(jsonlite)
+require(tidyverse)
+require(DT)
 ```
 # JSON data description
   
@@ -19,7 +23,6 @@ knitr::opts_chunk$set(
   * NoSQL databases as a document format (e.g., MongoDB)
   * Relational databases as a new column type (e.g., PostgreSQL)
   
-<<<<<<< HEAD
   JSON format is text only and independent to any programming language, so it is a good way to store data. 
   
   [Wikipedia introduction](https://en.wikipedia.org/wiki/JSON) and [JSON syntax introduction](http://json.org/).
@@ -29,3 +32,43 @@ knitr::opts_chunk$set(
   There three major R packages available for reading JSON data into R (rjson, RJSONIO and jsonlite). Examples to compare behavior and performance of those three packages are [here](https://rstudio-pubs-static.s3.amazonaws.com/31702_9c22e3d1a0c44968a4a1f9656f1800ab.html). I prefer jsonlite because it provides more options for manipulating the format and most importantly we can get well formatted data by default.
   
 # Access NFL records 'Franchise' API and pulldown JSON data
+
+```{r retrieve_info_function}
+get_franchise <- function(endpoint,team_ID=NULL){
+  base <- "https://records.nhl.com/site/api/"                 # API base
+  
+    if (!(endpoint %in% c("franchise","franchise-team-totals","franchise-season-records",
+                          "franchise-goalie-records","franchise-skater-records"))) 
+      stop("URL is not correct!")
+  
+    if (is.null(team_ID)) get_URL <- paste0(base, endpoint)
+      else if (!(team_ID %in% c(1:38))) stop("Team ID is not correct!")
+        else get_URL <- paste0(base, endpoint, "?cayenneExp=franchiseId=", team_ID) 
+
+  get_request <- GET(get_URL)                                 # Get raw data
+  get_request_text <- content(get_request, as = "text", encoding = "UTF-8") # Get contents
+  get_request_json <- fromJSON(get_request_text, flatten=TRUE)# Parse to list
+  get_request_tbl <- as_tibble(get_request_json$data)         # Convert to tibble
+}
+```
+```{r retrieve_tables}
+franchise <- get_franchise("franchise")
+team_totals <- get_franchise("franchise-team-totals")
+season_records <- get_franchise("franchise-season-records", 2)
+goalie_records <- get_franchise("franchise-goalie-records", 2)
+skater_records <- get_franchise("franchise-skater-records", 3)
+```
+
+# Exploratory data analysis
+```{r}
+
+```
+
+
+
+
+
+
+
+
+
