@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
   * NoSQL databases as a document format (e.g., MongoDB)
   * Relational databases as a new column type (e.g., PostgreSQL)
   
+<<<<<<< HEAD
   JSON format is text only and independent to any programming language, so it is a good way to store data. 
   
   [Wikipedia introduction](https://en.wikipedia.org/wiki/JSON) and [JSON syntax introduction](http://json.org/).
@@ -30,11 +31,26 @@ knitr::opts_chunk$set(
 # Access NFL records 'Franchise' API and pulldown JSON data
 
   
+=======
+  
+  
+  More information can be checked [here](https://en.wikipedia.org/wiki/JSON) and JSON syntax introduction is [here](http://json.org/)
+  
+  [JSON (JavaScript Object Notation)](https://en.wikipedia.org/wiki/JSON) is an open standard file format, originally specified by [Douglas Crockford](https://en.wikipedia.org/wiki/Douglas_Crockford). It is commonly used for exchanging data in web applications. JSON uses human-readable syntax and is a programming language-independent format. File in JSON format can be easily checked manually using text editors or processed to extract information with many different packages/tools, so JSON is also a very good choice for storing data.
+  
+# Ways to read JSON data into R
+
+  
+
+>>>>>>> ed2ee0165196510d6eee371615bc7b8eb6ce2abb
 
 
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ed2ee0165196510d6eee371615bc7b8eb6ce2abb
 
 You can write math expressions, e.g. $Y = X\beta + \epsilon$, footnotes^[A footnote here.], and tables, e.g. using `knitr::kable()`.
 
