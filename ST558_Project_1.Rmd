@@ -31,7 +31,7 @@ require(DT)
 
   There three major R packages available for reading JSON data into R (rjson, RJSONIO and jsonlite). Examples to compare behavior and performance of those three packages are [here](https://rstudio-pubs-static.s3.amazonaws.com/31702_9c22e3d1a0c44968a4a1f9656f1800ab.html). I prefer jsonlite because it provides more options for manipulating the format and most importantly we can get well formatted data by default.
   
-# Access NFL records 'Franchise' API and pulldown JSON data
+# Access NHL records 'Franchise' API and pulldown JSON data
 
 ```{r retrieve_info_function}
 get_franchise <- function(endpoint,team_ID=NULL){
@@ -52,16 +52,22 @@ get_franchise <- function(endpoint,team_ID=NULL){
 }
 ```
 ```{r retrieve_tables}
+# Test function.
 franchise <- get_franchise("franchise")
 team_totals <- get_franchise("franchise-team-totals")
-season_records <- get_franchise("franchise-season-records", 2)
+season_records <- get_franchise("franchise-season-records", 19)
 goalie_records <- get_franchise("franchise-goalie-records", 2)
-skater_records <- get_franchise("franchise-skater-records", 3)
+skater_records <- get_franchise("franchise-skater-records", 19)
 ```
 
 # Exploratory data analysis
 ```{r}
-
+team_info <- franchise %>% filter(is.na(lastSeasonId)) %>% 
+                           select(id, firstSeasonId, teamCommonName, teamPlaceName) 
+datatable(team_info, 
+          rownames=NULL, 
+          colnames=c("Franchise ID","First Season","Team Name","Team City"),
+          caption = "Current NHL teams")
 ```
 
 
