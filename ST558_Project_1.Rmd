@@ -3,17 +3,16 @@ title: "ST558 Project 1"
 author: "Tao Sun"
 date: "`r Sys.Date()`"
 output: rmarkdown::github_document
+always_allow_html: true
 ---
 
-```{r setup, include = FALSE}
-knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>"
-)
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 require(httr)
 require(jsonlite)
 require(tidyverse)
 require(DT)
+require(knitr)
 ```
 # JSON data description
   
