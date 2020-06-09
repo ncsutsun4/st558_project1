@@ -13,7 +13,8 @@ require(tidyverse)
 require(DT)
 require(knitr)
 ```
-# JSON data description
+
+# **JSON data description**
   
   **JSON** (JavaScript Object Notation) is a lightweight and flexible data format that is easy for humans to read and for machines to parse. JSON has become a common format used in: 
   
@@ -25,11 +26,13 @@ require(knitr)
   
   [Wikipedia introduction](https://en.wikipedia.org/wiki/JSON) and [JSON syntax introduction](http://json.org/).
   
-# Ways to read JSON data into R
+# **Ways to read JSON data into R**
 
   There three major R packages available for reading JSON data into R (rjson, RJSONIO and jsonlite). Examples to compare behavior and performance of those three packages are [here](https://rstudio-pubs-static.s3.amazonaws.com/31702_9c22e3d1a0c44968a4a1f9656f1800ab.html). I prefer jsonlite because it provides more options for manipulating the format and most importantly we can get well formatted data by default.
   
-# Access NHL records 'Franchise' API and pulldown JSON data
+# **Access NHL records 'Franchise' API and pulldown JSON data**
+
+Function used to pull down "Francise" records.
 
 ```{r retrieve_info_function}
 get_franchise <- function(endpoint,team_ID=NULL){
@@ -50,8 +53,10 @@ get_franchise <- function(endpoint,team_ID=NULL){
   return(get_request_tbl)                                     # Return a table
 }
 ```
+
+Pull down data.
+
 ```{r retrieve_tables}
-# Test function.
 franchise <- get_franchise("franchise")
 team_totals <- get_franchise("franchise-team-totals")
 season_records <- get_franchise("franchise-season-records", 1)
@@ -59,7 +64,8 @@ goalie_records <- get_franchise("franchise-goalie-records", 1)
 skater_records <- get_franchise("franchise-skater-records", 1)
 ```
 
-# Exploratory data analysis
+# **Exploratory data analysis**
+
 ```{r}
 team_info <- franchise %>% filter(is.na(lastSeasonId)) %>% 
                            select(id, firstSeasonId, teamCommonName, teamPlaceName) 
@@ -69,7 +75,7 @@ datatable(team_info,
           caption = "Current NHL teams")
 ```
 
-# The team with highest winning ratio in NHL history
+# **The team with highest winning ratio in NHL history**
 
 All records of number of games a team played and wined was retrieved and ploted as below. all the teams seems have very similar winning ratios, except team "Montréal Canadiens"(#1) showed extraordinary winning rate in both regular season and playoffs. Interestingly, team "Edmonton Oilers"(#25) has much better performance in playoffs than in the regular seasons.
 
@@ -100,9 +106,10 @@ datatable(playoffs, caption="Winning rato in regular seasons",rownames=NULL, col
 ```
 
 
-# Further check Montreal Canadiens team
+# **Further check Montreal Canadiens team's plalyers in each position**
 ## The former and active players in each position.
 Seems that Montreal Canadiens need more player on the right wing position.
+
 ```{r}
 tbl <-table(skater_records$activePlayer, skater_records$positionCode)
 rownames(tbl) <- c("Former player", "Current player")
@@ -113,6 +120,7 @@ knitr::kable(tbl)
 
 ## Who is the active player got highest average scores/season in the team.
 Tomas Tatar is the player in the team who got the highest average scores/season. Max Pacioretty is definitely the super star in the team who performed so well in the past 10 seasons.
+
 ```{r}
 skater_records %>% filter(activePlayer == TRUE) %>% 
                    mutate(AvergePoints = round(points/seasons,2)) %>% 
