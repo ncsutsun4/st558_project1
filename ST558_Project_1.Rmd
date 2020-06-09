@@ -4,7 +4,6 @@ author: "Tao Sun"
 date: "`r Sys.Date()`"
 output:
   rmarkdown::github_document: default
-always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
@@ -67,14 +66,19 @@ skater_records <- get_franchise("franchise-skater-records", 1)
 ```
 
 # **Exploratory data analysis**
-
+Only New York City has more than one team in NHL
 ```{r}
-team_info <- franchise %>% filter(is.na(lastSeasonId)) %>% 
+# Select active team and find city with more tahn one team
+team <- franchise %>% filter(is.na(lastSeasonId)) %>% 
                            select(id, firstSeasonId, teamCommonName, teamPlaceName) 
-datatable(team_info, 
-          rownames=NULL, 
-          colnames=c("Franchise ID","First Season","Team Name","Team City"),
-          caption = "Current NHL teams")
+teamN <- team %>% group_by(teamPlaceName) %>% summarize(n=n())%>% arrange(desc(n)) %>% filter(n>1) %>% rename(`City Name`=teamPlaceName, `Team Number`=n)
+kable(teamN)
+
+# Commented out for knit reason;
+#datatable(team_info, 
+#          rownames=NULL, 
+#          colnames=c("Franchise ID","First Season","Team Name","Team City"),
+#          caption = "Current NHL teams")
 ```
 
 # **The team with highest winning ratio in NHL history**
@@ -102,9 +106,15 @@ regular_season <- team_totals %>% mutate(ratio = round(wins/gamesPlayed,2)) %>% 
 
 playoffs <- team_totals %>% mutate(ratio = round(wins/gamesPlayed,2)) %>% filter(gameTypeId=="Playoffs") %>% arrange(desc(ratio)) %>% select(teamName, franchiseId, gamesPlayed, wins, ratio)
 
-datatable(regular_season, caption="Winning rato in regular seasons", rownames=NULL, colnames = c("Franchise ID", "Team Name", "Number of games played", "Number of games wined"))
+kable(head(regular_season, 4), caption="Winning rato in regular seasons", rownames=NULL, colnames = c("Franchise ID", "Team Name", "Number of games played", "Number of games wined"))
 
-datatable(playoffs, caption="Winning rato in regular seasons",rownames=NULL, colnames = c("Franchise ID", "Team Name", "Number of games played", "Number of games wined"))
+kable(head(playoffs,4), caption="Winning rato in regular seasons",rownames=NULL, colnames = c("Franchise ID", "Team Name", "Number of games played", "Number of games wined"))
+
+# Commented out because Knit issue with github
+
+#datatable(regular_season, caption="Winning rato in regular seasons", rownames=NULL, colnames = c("Franchise ID", "Team Name", "Number of games played", "Number of games wined"))
+
+#datatable(playoffs, caption="Winning rato in regular seasons",rownames=NULL, colnames = c("Franchise ID", "Team Name", "Number of games played", "Number of games wined"))
 ```
 
 
