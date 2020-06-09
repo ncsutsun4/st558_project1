@@ -2,7 +2,7 @@
 title: "ST558 Project 1"
 author: "Tao Sun"
 date: "`r Sys.Date()`"
-output: rmarkdown::github_document
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
