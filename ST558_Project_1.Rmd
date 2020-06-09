@@ -2,7 +2,8 @@
 title: "ST558 Project 1"
 author: "Tao Sun"
 date: "`r Sys.Date()`"
-output: github_document
+output:
+  rmarkdown::github_document: default
 ---
 
 ```{r setup, include=FALSE}
