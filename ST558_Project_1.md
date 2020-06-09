@@ -94,17 +94,11 @@ Tomas Tatar is the player in the team who got the highest average
 scores/season. Max Pacioretty is definitely the super star in the team
 who performed so well in the past 10 seasons.
 
-    ## # A tibble: 64 x 4
-    ##    Name              seasons points AvergePoints
-    ##    <chr>               <int>  <int>        <dbl>
-    ##  1 Tomas Tatar             2    119         59.5
-    ##  2 Max Domi                2    116         58  
-    ##  3 Alexander Radulov       1     54         54  
-    ##  4 Max Pacioretty         10    448         44.8
-    ##  5 Alex Galchenyuk         6    255         42.5
-    ##  6 Brendan Gallagher       8    334         41.8
-    ##  7 Nick Suzuki             1     41         41  
-    ##  8 P.K. Subban             7    278         39.7
-    ##  9 Jonathan Drouin         3    114         38  
-    ## 10 Phillip Danault         5    170         34  
-    ## # ... with 54 more rows
+| Player Name       | Number of Seasons Played | Total Points | Average Points/Seson |
+| :---------------- | -----------------------: | -----------: | -------------------: |
+| Tomas Tatar       |                        2 |          119 |                59.50 |
+| Max Domi          |                        2 |          116 |                58.00 |
+| Alexander Radulov |                        1 |           54 |                54.00 |
+| Max Pacioretty    |                       10 |          448 |                44.80 |
+| Alex Galchenyuk   |                        6 |          255 |                42.50 |
+| Brendan Gallagher |                        8 |          334 |                41.75 |

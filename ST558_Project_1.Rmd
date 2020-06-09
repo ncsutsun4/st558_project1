@@ -134,12 +134,15 @@ knitr::kable(tbl)
 Tomas Tatar is the player in the team who got the highest average scores/season. Max Pacioretty is definitely the super star in the team who performed so well in the past 10 seasons.
 
 ```{r}
-skater_records %>% filter(activePlayer == TRUE) %>% 
+top_players <- skater_records %>% filter(activePlayer == TRUE) %>% 
                    mutate(AvergePoints = round(points/seasons,2)) %>% 
                    arrange(desc(AvergePoints)) %>% 
                    unite(Name, firstName, lastName, sep=" ")%>%
-                   select(Name, seasons, points, AvergePoints)
-                
+                   select(Name, seasons, points, AvergePoints) %>%
+                   rename(`Player Name`=Name, `Number of Seasons Played`=seasons, 
+                          `Total Points`=points, `Average Points/Seson`=AvergePoints)
+
+kable(head(top_players,6))               
 ```
 
 
