@@ -3,11 +3,10 @@ title: "ST558 Project 1"
 author: "Tao Sun"
 date: "`r Sys.Date()`"
 output: rmarkdown::github_document
-always_allow_html: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE, message=FALSE)
 require(httr)
 require(jsonlite)
 require(tidyverse)
